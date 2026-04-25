@@ -388,3 +388,50 @@ body {
   cursor: pointer;
   font-size: 14px;
 }
+
+@media (max-width: 900px) {
+  .products-section {
+    padding: 50px 28px;
+  }
+
+  .section-header {
+    text-align: center;
+  }
+
+  .section-header h2 {
+    font-size: 36px;
+    margin: 0 auto;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .product-image-wrap {
+    height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .products-section {
+    padding: 40px 20px;
+  }
+
+  .section-header h2 {
+    font-size: 30px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .product-image-wrap {
+    height: 300px;
+  }
+}
