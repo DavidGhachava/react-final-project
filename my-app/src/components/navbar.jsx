@@ -18,7 +18,7 @@ function Navbar() {
         />
 
         <button className="cart-button">Cart 0</button>
-        <button className="nav-button">Shop Now</button>
+       <button className="nav-button">Shop</button>
       </div>
     </header>
   )

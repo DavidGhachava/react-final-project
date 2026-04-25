@@ -71,3 +71,167 @@ body {
   cursor: pointer;
   font-size: 14px;
 }
+@media (max-width: 900px) {
+  .navbar {
+    padding: 20px 28px;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .nav-actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .search-input {
+    width: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 18px 20px;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .search-input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .cart-button,
+  .nav-button {
+    padding: 11px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+    height: 46px;
+  }
+}
+
+.hero {
+  padding: 70px 64px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-label {
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #777;
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-size: 56px;
+  line-height: 1.05;
+  margin: 0;
+  max-width: 720px;
+}
+
+.hero-text {
+  font-size: 18px;
+  color: #666;
+  max-width: 520px;
+  line-height: 1.6;
+  margin: 24px 0;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.primary-button,
+.secondary-button {
+  border-radius: 999px;
+  padding: 14px 22px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.primary-button {
+  border: none;
+  background: #1f1f1f;
+  color: white;
+}
+
+.secondary-button {
+  border: 1px solid #1f1f1f;
+  background: transparent;
+  color: #1f1f1f;
+}
+
+/* hover polish */
+.primary-button:hover {
+  transform: translateY(-2px);
+  background: #000;
+}
+
+.secondary-button:hover {
+  transform: translateY(-2px);
+  background: #1f1f1f;
+  color: white;
+}
+
+/* right side card */
+.hero-card {
+  height: 420px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #ded4c7, #f7f4ef);
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.product-preview {
+  width: 100%;
+  background: white;
+  border-radius: 24px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
