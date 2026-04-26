@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import ProductGrid from './components/ProductGrid'
+import Home from './pages/Home'
+import Products from './pages/Products'
+import About from './pages/About'
 
 function App() {
   const [cartCount, setCartCount] = useState(0)
@@ -14,8 +16,12 @@ function App() {
   return (
     <>
       <Navbar cartCount={cartCount} />
-      <Hero />
-      <ProductGrid onAddToCart={handleAddToCart} />
+
+      <Routes>
+        <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </>
   )
 }

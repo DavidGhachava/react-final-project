@@ -1,13 +1,18 @@
+import { Link } from 'react-router-dom'
+
 function Navbar({ cartCount }) {
   return (
     <header className="navbar">
-      <div className="logo">DeskHaus</div>
+      <div className="logo">
+        <Link to="/">DeskHaus</Link>
+      </div>
 
       <nav className="nav-links">
-        <a href="#">Desks</a>
-        <a href="#">Chairs</a>
-        <a href="#">Lighting</a>
-        <a href="#">Accessories</a>
+        <Link to="/products">Desks</Link>
+        <Link to="/products">Chairs</Link>
+        <Link to="/products">Lighting</Link>
+        <Link to="/products">Accessories</Link>
+        <Link to="/about">About</Link>
       </nav>
 
       <div className="nav-actions">
@@ -18,7 +23,10 @@ function Navbar({ cartCount }) {
         />
 
         <button className="cart-button">Cart {cartCount}</button>
-        <button className="nav-button">Shop</button>
+
+        <Link to="/products" className="nav-button">
+          Shop
+        </Link>
       </div>
     </header>
   )

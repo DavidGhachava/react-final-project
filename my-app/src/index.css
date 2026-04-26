@@ -38,6 +38,17 @@ body {
   font-size: 15px;
 }
 
+.nav-links a,
+.nav-links a:visited {
+  text-decoration: none;
+  color: #1f1f1f;
+}
+
+.logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .nav-button {
   border: none;
   background: #1f1f1f;
@@ -46,7 +57,12 @@ body {
   border-radius: 999px;
   cursor: pointer;
   font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .nav-actions {
   display: flex;
   align-items: center;
