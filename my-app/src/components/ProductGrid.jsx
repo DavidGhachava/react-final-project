@@ -32,7 +32,7 @@ const products = [
   },
 ]
 
-function ProductGrid() {
+function ProductGrid({ onAddToCart }) {
   return (
     <section className="products-section">
       <div className="section-header">
@@ -48,6 +48,7 @@ function ProductGrid() {
             name={product.name}
             category={product.category}
             price={product.price}
+            onAddToCart={onAddToCart}
           />
         ))}
       </div>

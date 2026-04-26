@@ -1,4 +1,4 @@
-function ProductCard({ image, name, category, price }) {
+function ProductCard({ image, name, category, price, onAddToCart }) {
   return (
     <article className="product-card">
       <div className="product-image-wrap">
@@ -14,7 +14,9 @@ function ProductCard({ image, name, category, price }) {
         <strong>${price}</strong>
       </div>
 
-      <button className="add-cart-button">Add to cart</button>
+      <button className="add-cart-button" onClick={onAddToCart}>
+  Add to cart
+</button>
     </article>
   )
 }

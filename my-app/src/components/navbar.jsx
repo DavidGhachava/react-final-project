@@ -1,4 +1,4 @@
-function Navbar() {
+function Navbar({ cartCount }) {
   return (
     <header className="navbar">
       <div className="logo">DeskHaus</div>
@@ -17,8 +17,8 @@ function Navbar() {
           placeholder="Search wood, lamps..."
         />
 
-        <button className="cart-button">Cart 0</button>
-       <button className="nav-button">Shop</button>
+        <button className="cart-button">Cart {cartCount}</button>
+        <button className="nav-button">Shop</button>
       </div>
     </header>
   )
