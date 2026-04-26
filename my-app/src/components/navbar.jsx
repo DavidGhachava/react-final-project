@@ -8,12 +8,12 @@ function Navbar({ cartCount }) {
       </div>
 
       <nav className="nav-links">
-        <Link to="/products">Desks</Link>
-        <Link to="/products">Chairs</Link>
-        <Link to="/products">Lighting</Link>
-        <Link to="/products">Accessories</Link>
-        <Link to="/about">About</Link>
-      </nav>
+  <Link to="/products?category=Desks">Desks</Link>
+  <Link to="/products?category=Chairs">Chairs</Link>
+  <Link to="/products?category=Lighting">Lighting</Link>
+  <Link to="/products?category=Accessories">Accessories</Link>
+  <Link to="/about">About</Link>
+</nav>
 
       <div className="nav-actions">
         <input

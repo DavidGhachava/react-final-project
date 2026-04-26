@@ -4,6 +4,7 @@ import chair from '../assets/chair.webp'
 import lamp from '../assets/lamp.webp'
 import shelf from '../assets/shelf.webp'
 import setup from '../assets/setup.webp'
+import desk from '../assets/desk.webp'
 
 const products = [
   {
@@ -20,15 +21,15 @@ const products = [
   },
   {
     name: 'Oak Desk Shelf',
-    category: 'Accessories',
+    category: 'Shelves',
     price: 89,
     image: shelf,
   },
   {
-    name: 'Full Desk Setup',
-    category: 'Setup',
-    price: 499,
-    image: setup,
+   name: 'Oak Work Desk',
+   category: 'Desks',
+   price: 299,
+   image: desk,
   },
 ]
 
