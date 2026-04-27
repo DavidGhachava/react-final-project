@@ -107,6 +107,7 @@ function Products({ onAddToCart }) {
             name={product.name}
             category={product.category}
             price={product.price}
+            product={product}
             onAddToCart={onAddToCart}
           />
         ))}

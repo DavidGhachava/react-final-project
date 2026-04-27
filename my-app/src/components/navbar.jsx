@@ -22,7 +22,7 @@ function Navbar({ cartCount }) {
           placeholder="Search wood, lamps..."
         />
 
-        <button className="cart-button">Cart {cartCount}</button>
+        <Link to="/cart" className="cart-button">Cart {cartCount}</Link>
 
         <Link to="/products" className="nav-button">
           Shop
