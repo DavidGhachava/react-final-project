@@ -921,3 +921,51 @@ body {
     grid-template-columns: 1fr;
   }
 }
+.search-box {
+  position: relative;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 58px;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 22px;
+  padding: 10px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  z-index: 200;
+}
+
+.search-result {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+}
+
+.search-result:hover {
+  background: #f7f4ef;
+}
+
+.search-result img {
+  width: 46px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-left: 12px;
+}
+
+.no-search-results {
+  margin: 0;
+  padding: 12px;
+  color: #777;
+  font-size: 14px;
+}
