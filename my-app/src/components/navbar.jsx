@@ -1,32 +1,63 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { products } from '../data/products'
 
 function Navbar({ cartCount }) {
   const [searchTerm, setSearchTerm] = useState('')
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+
+  const searchRef = useRef(null)
   const navigate = useNavigate()
 
-  const normalizedSearch = searchTerm.toLowerCase()
+  const normalizedSearch = searchTerm.toLowerCase().trim()
 
-const searchResults = products
-  .filter((product) =>
-    product.name.toLowerCase().includes(normalizedSearch)
-  )
-  .sort((a, b) => {
-    const aName = a.name.toLowerCase()
-    const bName = b.name.toLowerCase()
+  const searchResults = products
+    .filter((product) =>
+      product.name.toLowerCase().includes(normalizedSearch)
+    )
+    .sort((a, b) => {
+      const aName = a.name.toLowerCase()
+      const bName = b.name.toLowerCase()
 
-    const aStarts = aName.startsWith(normalizedSearch)
-    const bStarts = bName.startsWith(normalizedSearch)
+      const aStarts = aName.startsWith(normalizedSearch)
+      const bStarts = bName.startsWith(normalizedSearch)
 
-    if (aStarts && !bStarts) return -1
-    if (!aStarts && bStarts) return 1
+      if (aStarts && !bStarts) return -1
+      if (!aStarts && bStarts) return 1
 
-    return aName.localeCompare(bName)
-  })
+      return aName.localeCompare(bName)
+    })
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsSearchOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  useEffect(() => {
+    function handleEscape(event) {
+      if (event.key === 'Escape') {
+        setIsSearchOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleEscape)
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape)
+    }
+  }, [])
 
   function handleSearchClick(product) {
-    setSearchTerm('')
+    setIsSearchOpen(false)
     navigate(`/products?category=${product.category}`)
   }
 
@@ -45,16 +76,20 @@ const searchResults = products
       </nav>
 
       <div className="nav-actions">
-        <div className="search-box">
+        <div className="search-box" ref={searchRef}>
           <input
             className="search-input"
             type="text"
             placeholder="Search wood, lamps..."
             value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
+            onFocus={() => setIsSearchOpen(true)}
+            onChange={(event) => {
+              setSearchTerm(event.target.value)
+              setIsSearchOpen(true)
+            }}
           />
 
-          {searchTerm && (
+          {isSearchOpen && searchTerm && (
             <div className="search-dropdown">
               {searchResults.length > 0 ? (
                 searchResults.map((product) => (
