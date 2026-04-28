@@ -19,7 +19,44 @@ function App() {
   }, [cartItems])
 
   function handleAddToCart(product) {
-    setCartItems([...cartItems, product])
+    setCartItems((currentItems) => [...currentItems, product])
+  }
+
+  function handleIncreaseQuantity(productName) {
+    setCartItems((currentItems) => {
+      const productToDuplicate = currentItems.find(
+        (item) => item.name === productName
+      )
+
+      if (!productToDuplicate) return currentItems
+
+      return [...currentItems, productToDuplicate]
+    })
+  }
+
+  function handleDecreaseQuantity(productName) {
+    let removed = false
+
+    setCartItems((currentItems) =>
+      currentItems.filter((item) => {
+        if (!removed && item.name === productName) {
+          removed = true
+          return false
+        }
+
+        return true
+      })
+    )
+  }
+
+  function handleRemoveProduct(productName) {
+    setCartItems((currentItems) =>
+      currentItems.filter((item) => item.name !== productName)
+    )
+  }
+
+  function handleClearCart() {
+    setCartItems([])
   }
 
   return (
@@ -30,7 +67,18 @@ function App() {
         <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
         <Route path="/products" element={<Products onAddToCart={handleAddToCart} />} />
         <Route path="/about" element={<About />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              cartItems={cartItems}
+              onIncreaseQuantity={handleIncreaseQuantity}
+              onDecreaseQuantity={handleDecreaseQuantity}
+              onRemoveProduct={handleRemoveProduct}
+              onClearCart={handleClearCart}
+            />
+          }
+        />
       </Routes>
       <Footer />
     </>
