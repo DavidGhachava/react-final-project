@@ -3,7 +3,6 @@ import ProductCard from './ProductCard'
 import chair from '../assets/chair.webp'
 import lamp from '../assets/lamp.webp'
 import shelf from '../assets/shelf.webp'
-import setup from '../assets/setup.webp'
 import desk from '../assets/desk.webp'
 
 const products = [

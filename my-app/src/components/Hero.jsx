@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import lamp from '../assets/lamp.webp'
 import shelf from '../assets/shelf.webp'
@@ -48,22 +49,38 @@ function Hero() {
         </p>
 
         <div className="hero-buttons">
-          <button className="primary-button">Shop collection</button>
-          <button className="secondary-button">Explore setups</button>
+          <Link to="/products" className="primary-button">
+            Shop collection
+          </Link>
+          <a href="#setup-bundle" className="secondary-button">
+            Explore setups
+          </a>
         </div>
       </div>
 
       <div className="hero-card">
         <img
-  key={currentProduct.name}
-  className="hero-image"
-  src={currentProduct.image}
-  alt={currentProduct.name}
-/>
+          key={currentProduct.name}
+          className="hero-image"
+          src={currentProduct.image}
+          alt={currentProduct.name}
+        />
 
         <div className="product-preview">
           <span>{currentProduct.name}</span>
           <strong>${currentProduct.price}</strong>
+        </div>
+
+        <div className="hero-dots" aria-label="Featured setup selector">
+          {heroProducts.map((product, index) => (
+            <button
+              key={product.name}
+              className={index === currentIndex ? 'active' : ''}
+              type="button"
+              aria-label={`Show ${product.name}`}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
         </div>
       </div>
     </section>

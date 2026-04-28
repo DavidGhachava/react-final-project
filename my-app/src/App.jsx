@@ -7,6 +7,7 @@ import Products from './pages/Products'
 import About from './pages/About'
 import Cart from './pages/Cart'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   const [cartItems, setCartItems] = useState(() => {
@@ -61,6 +62,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <Navbar cartCount={cartItems.length} />
 
       <Routes>
