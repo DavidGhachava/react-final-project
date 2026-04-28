@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { products } from '../data/products'
 
 function Navbar({ cartCount }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const searchRef = useRef(null)
   const navigate = useNavigate()
+  const location = useLocation()
 
   const normalizedSearch = searchTerm.toLowerCase().trim()
 
@@ -27,6 +29,28 @@ function Navbar({ cartCount }) {
 
       return aName.localeCompare(bName)
     })
+
+  const selectedCategory = new URLSearchParams(location.search).get('category')
+
+  function getCategoryLinkClass(category) {
+    const isActive =
+      location.pathname === '/products' && selectedCategory === category
+
+    return isActive ? 'active' : ''
+  }
+
+  useEffect(() => {
+    function handleScroll() {
+      setIsScrolled(window.scrollY > 8)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -62,21 +86,30 @@ function Navbar({ cartCount }) {
   }
 
   return (
-    <header className="navbar">
+    <header className={isScrolled ? 'navbar scrolled' : 'navbar'}>
       <div className="logo">
         <Link to="/">DeskHaus</Link>
       </div>
 
       <nav className="nav-links">
-        <Link to="/products?category=Desks">Desks</Link>
-        <Link to="/products?category=Chairs">Chairs</Link>
-        <Link to="/products?category=Lighting">Lighting</Link>
-        <Link to="/products?category=Accessories">Accessories</Link>
-        <Link to="/about">About</Link>
+        <Link className={getCategoryLinkClass('Desks')} to="/products?category=Desks">
+          Desks
+        </Link>
+        <Link className={getCategoryLinkClass('Chairs')} to="/products?category=Chairs">
+          Chairs
+        </Link>
+        <Link className={getCategoryLinkClass('Lighting')} to="/products?category=Lighting">
+          Lighting
+        </Link>
+        <Link className={getCategoryLinkClass('Accessories')} to="/products?category=Accessories">
+          Accessories
+        </Link>
+        <NavLink to="/about">About</NavLink>
       </nav>
 
       <div className="nav-actions">
         <div className="search-box" ref={searchRef}>
+          <span className="search-icon" aria-hidden="true" />
           <input
             className="search-input"
             type="text"
@@ -110,12 +143,13 @@ function Navbar({ cartCount }) {
         </div>
 
         <Link to="/cart" className="cart-button">
-          Cart {cartCount}
+          <span>Cart</span>
+          <strong>{cartCount}</strong>
         </Link>
 
-        <Link to="/products" className="nav-button">
+        <NavLink to="/products" end className="nav-button">
           Shop
-        </Link>
+        </NavLink>
       </div>
     </header>
   )
