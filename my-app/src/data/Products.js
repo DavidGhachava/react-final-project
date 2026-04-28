@@ -25,7 +25,7 @@ export const products = [
   },
   {
     name: 'Oak Desk Shelf',
-    category: 'Shelves',
+    category: 'Accessories',
     price: 89,
     image: shelf,
   },
