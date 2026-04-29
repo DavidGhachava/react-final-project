@@ -161,7 +161,7 @@ function Cart({
               <strong>${subtotal}</strong>
             </div>
 
-            <button className="checkout-button">Checkout</button>
+            <Link to="/checkout" className="checkout-button">Checkout</Link>
 
             <Link to="/products" className="summary-link">
               Continue shopping

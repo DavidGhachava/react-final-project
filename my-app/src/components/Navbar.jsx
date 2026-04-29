@@ -82,7 +82,8 @@ function Navbar({ cartCount }) {
 
   function handleSearchClick(product) {
     setIsSearchOpen(false)
-    navigate(`/products?category=${product.category}`)
+    setSearchTerm('')
+    navigate(`/products/${product.slug}`)
   }
 
   return (
@@ -105,6 +106,9 @@ function Navbar({ cartCount }) {
           Accessories
         </Link>
         <NavLink to="/about">About</NavLink>
+        <NavLink to="/cart" className="mobile-cart-link">
+          Cart ({cartCount})
+        </NavLink>
       </nav>
 
       <div className="nav-actions">

@@ -1,36 +1,5 @@
 import ProductCard from './ProductCard'
-
-import chair from '../assets/chair.webp'
-import lamp from '../assets/lamp.webp'
-import shelf from '../assets/shelf.webp'
-import desk from '../assets/desk.webp'
-
-const products = [
-  {
-    name: 'Ergo Chair',
-    category: 'Chairs',
-    price: 149,
-    image: chair,
-  },
-  {
-    name: 'Desk Lamp',
-    category: 'Lighting',
-    price: 59,
-    image: lamp,
-  },
-  {
-    name: 'Oak Desk Shelf',
-    category: 'Accessories',
-    price: 89,
-    image: shelf,
-  },
-  {
-   name: 'Oak Work Desk',
-   category: 'Desks',
-   price: 299,
-   image: desk,
-  },
-]
+import { featuredProducts } from '../data/products'
 
 function ProductGrid({ onAddToCart }) {
   return (
@@ -41,7 +10,7 @@ function ProductGrid({ onAddToCart }) {
       </div>
 
       <div className="product-grid">
-        {products.map((product) => (
+        {featuredProducts.map((product) => (
           <ProductCard
             key={product.name}
             image={product.image}

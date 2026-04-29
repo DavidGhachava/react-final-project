@@ -9,6 +9,7 @@ import setup from '../assets/setup.webp'
 import shelf from '../assets/shelf.webp'
 import woodMaterial from '../assets/wood-material.webp'
 import workspaceDetail from '../assets/workspace-detail.webp'
+import { getProductBySlug } from '../data/products'
 
 const categories = [
   {
@@ -44,12 +45,7 @@ const setups = [
   'Creator desk setup',
 ]
 
-const setupBundle = {
-  name: 'Full Desk Setup',
-  category: 'Setup',
-  price: 499,
-  image: setup,
-}
+const setupBundle = getProductBySlug('full-desk-setup')
 
 function Home({ onAddToCart }) {
   return (

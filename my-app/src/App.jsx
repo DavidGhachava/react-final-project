@@ -6,6 +6,10 @@ import Home from './pages/Home'
 import Products from './pages/Products'
 import About from './pages/About'
 import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
+import Contact from './pages/Contact'
+import ProductDetail from './pages/ProductDetail'
+import Support from './pages/Support'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -68,7 +72,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
         <Route path="/products" element={<Products onAddToCart={handleAddToCart} />} />
+        <Route path="/products/:slug" element={<ProductDetail onAddToCart={handleAddToCart} />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/support" element={<Support />} />
         <Route
           path="/cart"
           element={
@@ -80,6 +87,10 @@ function App() {
               onClearCart={handleClearCart}
             />
           }
+        />
+        <Route
+          path="/checkout"
+          element={<Checkout cartItems={cartItems} onClearCart={handleClearCart} />}
         />
       </Routes>
       <Footer />
