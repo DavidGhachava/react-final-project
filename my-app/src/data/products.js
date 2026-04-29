@@ -3,8 +3,6 @@ import lamp from '../assets/lamp.webp'
 import shelf from '../assets/shelf.webp'
 import setup from '../assets/setup.webp'
 import desk from '../assets/desk.webp'
-import woodMaterial from '../assets/wood-material.webp'
-import workspaceDetail from '../assets/workspace-detail.webp'
 
 export const products = [
   {
@@ -21,19 +19,6 @@ export const products = [
     featured: true,
   },
   {
-    slug: 'compact-writing-desk',
-    name: 'Compact Writing Desk',
-    category: 'Desks',
-    price: 249,
-    image: workspaceDetail,
-    description:
-      'A smaller desk for apartments, bedrooms, and study corners where the surface still needs to feel intentional.',
-    materials: 'Oak veneer, powder-coated frame',
-    dimensions: '95 x 52 x 74 cm',
-    details: ['Slim footprint', 'Warm wood grain', 'Good for laptop setups'],
-    featured: false,
-  },
-  {
     slug: 'ergo-chair',
     name: 'Ergo Chair',
     category: 'Chairs',
@@ -45,19 +30,6 @@ export const products = [
     dimensions: '62 x 61 x 109 cm',
     details: ['Adjustable headrest', 'Tilt support', 'Breathable back'],
     featured: true,
-  },
-  {
-    slug: 'soft-task-chair',
-    name: 'Soft Task Chair',
-    category: 'Chairs',
-    price: 179,
-    image: chair,
-    description:
-      'A more cushioned chair option for people who want comfort without the heavy corporate-office feeling.',
-    materials: 'Textile upholstery, foam cushion, powder-coated base',
-    dimensions: '61 x 60 x 103 cm',
-    details: ['Cushioned seat', 'Quiet neutral finish', 'Smooth rolling base'],
-    featured: false,
   },
   {
     slug: 'desk-lamp',
@@ -84,19 +56,6 @@ export const products = [
     dimensions: '78 x 24 x 14 cm',
     details: ['Monitor riser height', 'Hidden storage space', 'Matches oak desks'],
     featured: true,
-  },
-  {
-    slug: 'wood-desk-tray',
-    name: 'Wood Desk Tray',
-    category: 'Accessories',
-    price: 39,
-    image: woodMaterial,
-    description:
-      'A small catch-all tray for notebooks, cables, pens, and the objects that usually drift across a desk.',
-    materials: 'Oak wood, smooth sealed finish',
-    dimensions: '28 x 18 x 3 cm',
-    details: ['Keeps small items grouped', 'Low profile', 'Natural grain variation'],
-    featured: false,
   },
   {
     slug: 'full-desk-setup',
