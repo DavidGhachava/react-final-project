@@ -3,16 +3,28 @@ import { useState } from 'react'
 
 const shippingOptions = {
   standard: {
-    label: 'Standard delivery',
-    detail: '3-5 business days',
+    label: 'Worldwide delivery',
+    detail: 'Arrives within 14 days',
     price: 0,
   },
   express: {
-    label: 'Express delivery',
-    detail: '1-2 business days',
-    price: 24,
+    label: 'Priority delivery',
+    detail: 'Arrives in 5-7 days',
+    price: 29,
   },
 }
+
+const phoneCountries = [
+  { label: 'United States', flag: '🇺🇸', code: '+1' },
+  { label: 'United Kingdom', flag: '🇬🇧', code: '+44' },
+  { label: 'Germany', flag: '🇩🇪', code: '+49' },
+  { label: 'France', flag: '🇫🇷', code: '+33' },
+  { label: 'Canada', flag: '🇨🇦', code: '+1' },
+  { label: 'Australia', flag: '🇦🇺', code: '+61' },
+  { label: 'Georgia', flag: '🇬🇪', code: '+995' },
+  { label: 'United Arab Emirates', flag: '🇦🇪', code: '+971' },
+  { label: 'Japan', flag: '🇯🇵', code: '+81' },
+]
 
 function PayPalMark() {
   return (
@@ -53,6 +65,8 @@ function Checkout({ cartItems, onClearCart }) {
   const [paymentMethod, setPaymentMethod] = useState('card')
   const [shippingMethod, setShippingMethod] = useState('standard')
   const [sameBilling, setSameBilling] = useState(true)
+  const [phoneCountry, setPhoneCountry] = useState(phoneCountries[0].label)
+  const [phoneNumber, setPhoneNumber] = useState(`${phoneCountries[0].code} `)
 
   const groupedItems = Object.values(
     cartItems.reduce((groups, item) => {
@@ -77,6 +91,15 @@ function Checkout({ cartItems, onClearCart }) {
     event.preventDefault()
     setConfirmed(true)
     onClearCart()
+  }
+
+  function handlePhoneCountryChange(event) {
+    const nextCountry = phoneCountries.find(
+      (country) => country.label === event.target.value
+    )
+
+    setPhoneCountry(event.target.value)
+    setPhoneNumber(`${nextCountry.code} `)
   }
 
   if (confirmed) {
@@ -139,11 +162,11 @@ function Checkout({ cartItems, onClearCart }) {
             <div className="checkout-fields two-columns">
               <label>
                 First name
-                <input type="text" placeholder="Mariam" required />
+                <input type="text" placeholder="Alex" required />
               </label>
               <label>
                 Last name
-                <input type="text" placeholder="Beridze" required />
+                <input type="text" placeholder="Morgan" required />
               </label>
             </div>
 
@@ -154,7 +177,26 @@ function Checkout({ cartItems, onClearCart }) {
               </label>
               <label>
                 Phone
-                <input type="tel" placeholder="+995 555 123 456" required />
+                <div className="phone-field">
+                  <select
+                    aria-label="Country calling code"
+                    value={phoneCountry}
+                    onChange={handlePhoneCountryChange}
+                  >
+                    {phoneCountries.map((country) => (
+                      <option value={country.label} key={`${country.label}-${country.code}`}>
+                        {country.flag} {country.label} {country.code}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(event) => setPhoneNumber(event.target.value)}
+                    placeholder="+1 555 013 4488"
+                    required
+                  />
+                </div>
               </label>
             </div>
           </section>
@@ -170,21 +212,21 @@ function Checkout({ cartItems, onClearCart }) {
 
             <label>
               Street address
-              <input type="text" placeholder="12 Rustaveli Avenue, Apt 8" required />
+              <input type="text" placeholder="24 Maple Street, Apt 4B" required />
             </label>
 
             <div className="checkout-fields three-columns">
               <label>
                 City
-                <input type="text" placeholder="Tbilisi" required />
+                <input type="text" placeholder="London" required />
               </label>
               <label>
                 Postal code
-                <input type="text" placeholder="0108" required />
+                <input type="text" placeholder="SW1A 1AA" required />
               </label>
               <label>
                 Country
-                <input type="text" placeholder="Georgia" required />
+                <input type="text" placeholder="United Kingdom" required />
               </label>
             </div>
 
@@ -271,7 +313,7 @@ function Checkout({ cartItems, onClearCart }) {
               <div className="payment-details">
                 <label>
                   Name on card
-                  <input type="text" placeholder="Mariam Beridze" required />
+                  <input type="text" placeholder="Alex Morgan" required />
                 </label>
 
                 <label>
@@ -317,16 +359,16 @@ function Checkout({ cartItems, onClearCart }) {
                 <div className="checkout-fields two-columns">
                   <label>
                     Account holder
-                    <input type="text" placeholder="Mariam Beridze" required />
+                    <input type="text" placeholder="Alex Morgan" required />
                   </label>
                   <label>
                     Bank name
-                    <input type="text" placeholder="TBC Bank" required />
+                    <input type="text" placeholder="Global Bank" required />
                   </label>
                 </div>
                 <label>
                   IBAN
-                  <input type="text" placeholder="GE29 NB00 0000 0101 9049 17" required />
+                  <input type="text" placeholder="GB29 NWBK 6016 1331 9268 19" required />
                 </label>
               </div>
             )}

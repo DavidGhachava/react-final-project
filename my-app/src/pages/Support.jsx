@@ -13,10 +13,10 @@ function Support() {
       <section className="support-grid">
         <article id="shipping">
           <span>Shipping</span>
-          <h2>Free shipping on every setup.</h2>
+          <h2>Worldwide shipping on every setup.</h2>
           <p>
-            Most products ship in 3-5 business days with protected packaging for
-            furniture edges, lamps, and wood surfaces.
+            Most products ship worldwide and arrive within 14 days, with
+            protected packaging for furniture edges, lamps, and wood surfaces.
           </p>
         </article>
 

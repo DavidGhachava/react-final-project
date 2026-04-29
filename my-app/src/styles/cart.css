@@ -295,6 +295,10 @@
     padding: 50px 28px;
   }
 
+  .cart-header {
+    margin-bottom: 28px;
+  }
+
   .cart-layout {
     grid-template-columns: 1fr;
   }
@@ -305,6 +309,10 @@
     align-items: flex-start;
   }
 
+  .cart-clear-button {
+    margin-top: 4px;
+  }
+
   .cart-summary {
     position: static;
   }
@@ -313,6 +321,10 @@
 @media (max-width: 600px) {
   .cart-page {
     padding: 36px 16px;
+  }
+
+  .cart-header {
+    margin-bottom: 32px;
   }
 
   .cart-header h1 {

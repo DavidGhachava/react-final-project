@@ -45,7 +45,7 @@ function Products({ onAddToCart }) {
         <div className="catalog-summary">
           <span>{products.length} essentials</span>
           <span>Free layout pairings</span>
-          <span>Ships in 3-5 days</span>
+          <span>Worldwide delivery within 14 days</span>
         </div>
       </div>
 

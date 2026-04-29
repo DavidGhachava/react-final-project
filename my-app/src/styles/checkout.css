@@ -138,6 +138,7 @@
 }
 
 .checkout-form input,
+.checkout-form select,
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -157,11 +158,23 @@
 }
 
 .checkout-form input:focus,
+.checkout-form select:focus,
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: #1f1f1f;
   background: white;
   box-shadow: 0 0 0 4px rgba(31, 31, 31, 0.06);
+}
+
+.phone-field {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.46fr) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.phone-field select {
+  cursor: pointer;
+  background-color: #faf8f4;
 }
 
 .shipping-options,
@@ -387,7 +400,8 @@
 
 @media (max-width: 700px) {
   .two-columns,
-  .three-columns {
+  .three-columns,
+  .phone-field {
     grid-template-columns: 1fr;
   }
 

@@ -230,6 +230,14 @@
   gap: 12px;
 }
 
+.setup-tags {
+  margin-top: 26px;
+}
+
+.bundle-list {
+  margin: 28px 0 34px;
+}
+
 .setup-tags span,
 .bundle-list span {
   border: 1px solid #d9d1c6;
@@ -248,7 +256,7 @@
 
 .bundle-actions {
   align-items: center;
-  gap: 18px;
+  gap: 28px;
 }
 
 .bundle-actions strong {
