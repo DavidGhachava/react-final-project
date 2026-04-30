@@ -1,7 +1,7 @@
 :root {
-  --page-gutter: clamp(24px, 5.6vw, 112px);
-  --content-max: 1680px;
-  --compact-content-max: 1540px;
+  --page-gutter: clamp(36px, 7vw, 148px);
+  --content-max: 1580px;
+  --compact-content-max: 1420px;
 }
 
 .hero,
@@ -84,7 +84,7 @@
 
 @media (min-width: 1600px) {
   :root {
-    --page-gutter: clamp(96px, 7vw, 150px);
+    --page-gutter: clamp(128px, 9vw, 190px);
   }
 
   .hero,
@@ -95,7 +95,7 @@
 
 @media (max-width: 1100px) {
   :root {
-    --page-gutter: clamp(24px, 4vw, 44px);
+    --page-gutter: clamp(28px, 4.8vw, 56px);
   }
 }
 
