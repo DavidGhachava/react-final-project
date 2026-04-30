@@ -2,8 +2,7 @@ import { useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 
 function Navbar({ cartCount }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isTabletCollapsed, setIsTabletCollapsed] = useState(false)
+  const [isTabletCollapsed, setIsTabletCollapsed] = useState(true)
 
   const location = useLocation()
   const cartLabel = cartCount > 99 ? '99+' : cartCount
@@ -12,8 +11,8 @@ function Navbar({ cartCount }) {
     { label: 'Desks', category: 'Desks' },
     { label: 'Chairs', category: 'Chairs' },
     { label: 'Lamps', category: 'Lighting' },
-    { label: 'Accessories', category: 'Accessories' },
-    { label: 'Bundles', category: 'Setup' },
+    { label: 'Extras', category: 'Accessories' },
+    { label: 'Sets', category: 'Setup' },
   ]
 
   const selectedCategory = new URLSearchParams(location.search).get('category')
@@ -25,8 +24,8 @@ function Navbar({ cartCount }) {
     return isActive ? 'active' : ''
   }
 
-  function closeMobileMenu() {
-    setIsMenuOpen(false)
+  function collapseNavigation() {
+    setIsTabletCollapsed(true)
   }
 
   return (
@@ -39,40 +38,28 @@ function Navbar({ cartCount }) {
       </div>
 
       <div className="mobile-header-actions">
-        <Link to="/cart" className="mobile-bag-button" onClick={closeMobileMenu}>
+        <Link to="/cart" className="mobile-bag-button" onClick={collapseNavigation}>
           <span>Bag</span>
           <strong>{cartLabel}</strong>
         </Link>
-        <Link to="/products" className="mobile-shop-button" onClick={closeMobileMenu}>
+        <Link to="/products" className="mobile-shop-button" onClick={collapseNavigation}>
           Shop
         </Link>
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-expanded={isMenuOpen}
-          aria-controls="primary-navigation"
-          onClick={() => setIsMenuOpen((currentValue) => !currentValue)}
-        >
-          {isMenuOpen ? 'Close' : 'Menu'}
-        </button>
       </div>
 
-      <nav
-        className={isMenuOpen ? 'nav-links open' : 'nav-links'}
-        id="primary-navigation"
-      >
+      <nav className="nav-links" id="primary-navigation">
         {navItems.map((item) => (
           <Link
             key={item.category}
             className={getCategoryLinkClass(item.category)}
             to={`/products?category=${item.category}`}
-            onClick={closeMobileMenu}
+            onClick={collapseNavigation}
           >
             {item.label}
           </Link>
         ))}
-        <NavLink to="/about" onClick={closeMobileMenu}>Story</NavLink>
-        <NavLink to="/cart" className="mobile-cart-link" onClick={closeMobileMenu}>
+        <NavLink to="/about" onClick={collapseNavigation}>Story</NavLink>
+        <NavLink to="/cart" className="mobile-cart-link" onClick={collapseNavigation}>
           Bag ({cartLabel})
         </NavLink>
       </nav>
@@ -98,6 +85,7 @@ function Navbar({ cartCount }) {
       <button
         className="tablet-collapse-toggle"
         type="button"
+        aria-controls="primary-navigation"
         aria-label={
           isTabletCollapsed ? 'Expand navigation bar' : 'Collapse navigation bar'
         }
