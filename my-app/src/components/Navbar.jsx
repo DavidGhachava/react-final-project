@@ -9,10 +9,10 @@ function Navbar({ cartCount }) {
   const cartLabel = cartCount > 99 ? '99+' : cartCount
 
   const navItems = [
-    { label: 'Workspaces', category: 'Desks' },
-    { label: 'Seating', category: 'Chairs' },
-    { label: 'Lighting', category: 'Lighting' },
-    { label: 'Desk tools', category: 'Accessories' },
+    { label: 'Desks', category: 'Desks' },
+    { label: 'Chairs', category: 'Chairs' },
+    { label: 'Lamps', category: 'Lighting' },
+    { label: 'Accessories', category: 'Accessories' },
     { label: 'Bundles', category: 'Setup' },
   ]
 
