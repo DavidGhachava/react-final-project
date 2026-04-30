@@ -5,8 +5,8 @@ import { products } from '../data/products'
 function Navbar({ cartCount }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isTabletCollapsed, setIsTabletCollapsed] = useState(false)
 
   const searchRef = useRef(null)
   const navigate = useNavigate()
@@ -50,19 +50,6 @@ function Navbar({ cartCount }) {
   }
 
   useEffect(() => {
-    function handleScroll() {
-      setIsScrolled(window.scrollY > 8)
-    }
-
-    handleScroll()
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
-  useEffect(() => {
     function handleClickOutside(event) {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
         setIsSearchOpen(false)
@@ -102,7 +89,7 @@ function Navbar({ cartCount }) {
   }
 
   return (
-    <header className={isScrolled ? 'navbar scrolled' : 'navbar'}>
+    <header className={isTabletCollapsed ? 'navbar tablet-collapsed' : 'navbar'}>
       <div className="logo">
         <Link to="/" aria-label="DeskHaus home">
           <span className="logo-mark" aria-hidden="true">D</span>
@@ -114,6 +101,9 @@ function Navbar({ cartCount }) {
         <Link to="/cart" className="mobile-bag-button" onClick={closeMobileMenu}>
           <span>Bag</span>
           <strong>{cartLabel}</strong>
+        </Link>
+        <Link to="/products" className="mobile-shop-button" onClick={closeMobileMenu}>
+          Shop
         </Link>
         <button
           className="menu-toggle"
@@ -197,6 +187,18 @@ function Navbar({ cartCount }) {
           Shop
         </Link>
       </div>
+
+      <button
+        className="tablet-collapse-toggle"
+        type="button"
+        aria-label={
+          isTabletCollapsed ? 'Expand navigation bar' : 'Collapse navigation bar'
+        }
+        aria-expanded={!isTabletCollapsed}
+        onClick={() => setIsTabletCollapsed((currentValue) => !currentValue)}
+      >
+        <span aria-hidden="true" />
+      </button>
     </header>
   )
 }

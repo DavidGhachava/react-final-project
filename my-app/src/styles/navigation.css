@@ -1,3 +1,7 @@
+.navbar + * {
+  margin-top: 82px;
+}
+
 .navbar {
   width: 100%;
   padding: 18px 64px;
@@ -5,23 +9,16 @@
   grid-template-columns: auto minmax(420px, 1fr) auto;
   gap: 24px;
   align-items: center;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   background: rgba(247, 244, 239, 0.82);
   backdrop-filter: blur(18px) saturate(130%);
   border-bottom: 1px solid rgba(226, 216, 204, 0.7);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.68) inset;
-  transition: padding 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease,
-    background 0.2s ease;
-}
-
-.navbar.scrolled {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  background: rgba(247, 244, 239, 0.94);
-  border-bottom-color: rgba(32, 28, 23, 0.1);
-  box-shadow: 0 18px 42px rgba(42, 34, 24, 0.08);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.68) inset,
+    0 14px 36px rgba(42, 34, 24, 0.06);
 }
 
 .logo {
@@ -98,6 +95,10 @@
   display: none;
 }
 
+.tablet-collapse-toggle {
+  display: none;
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
@@ -109,6 +110,7 @@
 .nav-button,
 .cart-button,
 .mobile-bag-button,
+.mobile-shop-button,
 .menu-toggle {
   text-decoration: none;
   display: inline-flex;
@@ -139,6 +141,7 @@
 }
 
 .mobile-bag-button,
+.mobile-shop-button,
 .menu-toggle {
   border: 1px solid #d8cfc4;
   background: rgba(255, 255, 255, 0.72);
@@ -161,6 +164,7 @@
 .cart-button:hover,
 .cart-button.active,
 .mobile-bag-button:hover,
+.mobile-shop-button:hover,
 .menu-toggle:hover {
   background: white;
   transform: translateY(-1px);
@@ -277,9 +281,63 @@
 }
 
 @media (max-width: 1100px) {
+  .navbar + * {
+    margin-top: 150px;
+  }
+
+  .navbar.tablet-collapsed + * {
+    margin-top: 84px;
+  }
+
   .navbar {
     padding: 18px 28px 16px;
     grid-template-columns: 1fr auto;
+  }
+
+  .navbar.tablet-collapsed {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .tablet-collapse-toggle {
+    position: absolute;
+    right: 28px;
+    bottom: -28px;
+    width: 42px;
+    height: 28px;
+    border: 1px solid #d8cfc4;
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    background: rgba(247, 244, 239, 0.96);
+    box-shadow: 0 14px 24px rgba(42, 34, 24, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .tablet-collapse-toggle span {
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid #1f1f1f;
+    border-bottom: 2px solid #1f1f1f;
+    transform: translateY(2px) rotate(225deg);
+    transition: transform 0.18s ease;
+  }
+
+  .navbar.tablet-collapsed .tablet-collapse-toggle span {
+    transform: translateY(-2px) rotate(45deg);
+  }
+
+  .navbar.tablet-collapsed .search-box,
+  .navbar.tablet-collapsed .nav-links {
+    display: none;
+  }
+
+  .navbar.tablet-collapsed .nav-actions {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
   }
 
   .nav-links {
@@ -302,10 +360,24 @@
 }
 
 @media (min-width: 601px) and (max-width: 760px) {
+  .navbar + * {
+    margin-top: 196px;
+  }
+
+  .navbar.tablet-collapsed + * {
+    margin-top: 84px;
+  }
+
   .navbar {
     grid-template-columns: 1fr;
     gap: 14px;
     padding: 18px 34px 18px;
+  }
+
+  .navbar.tablet-collapsed {
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    padding: 16px 34px;
   }
 
   .nav-actions {
@@ -326,13 +398,53 @@
   .nav-links {
     grid-row: 3;
   }
+
+  .navbar.tablet-collapsed .nav-actions {
+    grid-column: 2;
+    grid-row: 1;
+    width: auto;
+    display: flex;
+  }
 }
 
 @media (max-width: 600px) {
+  .navbar + * {
+    margin-top: 130px;
+  }
+
+  .navbar.tablet-collapsed + * {
+    margin-top: 86px;
+  }
+
   .navbar {
     padding: 12px 14px 14px;
     gap: 10px;
     grid-template-columns: 1fr auto;
+  }
+
+  .tablet-collapse-toggle {
+    right: 14px;
+    bottom: -28px;
+    width: 38px;
+    height: 27px;
+  }
+
+  .navbar.tablet-collapsed {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .navbar.tablet-collapsed .search-box,
+  .navbar.tablet-collapsed .nav-links {
+    display: none;
+  }
+
+  .navbar.tablet-collapsed .nav-actions {
+    display: none;
+  }
+
+  .navbar.tablet-collapsed .menu-toggle {
+    display: none;
   }
 
   .logo {
@@ -366,6 +478,20 @@
     min-width: 34px;
     height: 26px;
     font-size: 12px;
+  }
+
+  .mobile-shop-button {
+    min-height: 40px;
+    padding: 8px 13px;
+    background: #1f1f1f;
+    color: white;
+    border-color: #1f1f1f;
+    box-shadow: 0 10px 20px rgba(31, 31, 31, 0.12);
+  }
+
+  .mobile-shop-button:hover {
+    background: #000;
+    color: white;
   }
 
   .menu-toggle {
