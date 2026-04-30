@@ -1,15 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { products } from '../data/products'
+import { useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 function Navbar({ cartCount }) {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isTabletCollapsed, setIsTabletCollapsed] = useState(false)
 
-  const searchRef = useRef(null)
-  const navigate = useNavigate()
   const location = useLocation()
   const cartLabel = cartCount > 99 ? '99+' : cartCount
 
@@ -21,25 +16,6 @@ function Navbar({ cartCount }) {
     { label: 'Bundles', category: 'Setup' },
   ]
 
-  const normalizedSearch = searchTerm.toLowerCase().trim()
-
-  const searchResults = products
-    .filter((product) =>
-      product.name.toLowerCase().includes(normalizedSearch)
-    )
-    .sort((a, b) => {
-      const aName = a.name.toLowerCase()
-      const bName = b.name.toLowerCase()
-
-      const aStarts = aName.startsWith(normalizedSearch)
-      const bStarts = bName.startsWith(normalizedSearch)
-
-      if (aStarts && !bStarts) return -1
-      if (!aStarts && bStarts) return 1
-
-      return aName.localeCompare(bName)
-    })
-
   const selectedCategory = new URLSearchParams(location.search).get('category')
 
   function getCategoryLinkClass(category) {
@@ -47,41 +23,6 @@ function Navbar({ cartCount }) {
       location.pathname === '/products' && selectedCategory === category
 
     return isActive ? 'active' : ''
-  }
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setIsSearchOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
-
-  useEffect(() => {
-    function handleEscape(event) {
-      if (event.key === 'Escape') {
-        setIsSearchOpen(false)
-      }
-    }
-
-    window.addEventListener('keydown', handleEscape)
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape)
-    }
-  }, [])
-
-  function handleSearchClick(product) {
-    setIsSearchOpen(false)
-    setSearchTerm('')
-    setIsMenuOpen(false)
-    navigate(`/products/${product.slug}`)
   }
 
   function closeMobileMenu() {
@@ -137,40 +78,6 @@ function Navbar({ cartCount }) {
       </nav>
 
       <div className="nav-actions">
-        <div className="search-box" ref={searchRef}>
-          <span className="search-icon" aria-hidden="true" />
-          <input
-            className="search-input"
-            type="text"
-            placeholder="Search desks, lamps, setup pieces..."
-            value={searchTerm}
-            onFocus={() => setIsSearchOpen(true)}
-            onChange={(event) => {
-              setSearchTerm(event.target.value)
-              setIsSearchOpen(true)
-            }}
-          />
-
-          {isSearchOpen && searchTerm && (
-            <div className="search-dropdown">
-              {searchResults.length > 0 ? (
-                searchResults.map((product) => (
-                  <button
-                    key={product.slug}
-                    className="search-result"
-                    onClick={() => handleSearchClick(product)}
-                  >
-                    <span>{product.name}</span>
-                    <img src={product.image} alt={product.name} />
-                  </button>
-                ))
-              ) : (
-                <p className="no-search-results">No products found</p>
-              )}
-            </div>
-          )}
-        </div>
-
         <Link to="/cart" className="cart-button">
           <span>Bag</span>
           <strong>{cartLabel}</strong>
