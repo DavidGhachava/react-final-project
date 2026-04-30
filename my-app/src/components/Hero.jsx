@@ -8,20 +8,25 @@ import setup from '../assets/setup.webp'
 const heroProducts = [
   {
     name: 'Desk Lamp',
+    category: 'Lighting',
     price: 59,
     image: lamp,
   },
   {
     name: 'Oak Desk Shelf',
+    category: 'Desk tool',
     price: 89,
     image: shelf,
   },
   {
     name: 'Full Desk Setup',
+    category: 'Bundle',
     price: 499,
     image: setup,
   },
 ]
+
+const heroStats = ['5 curated pieces', 'Bundle-ready setups', 'Delivery estimates at checkout']
 
 function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -41,20 +46,30 @@ function Hero() {
   return (
     <section className="hero">
       <div className="hero-content">
-        <p className="hero-label">Premium workspace essentials</p>
-        <h1>Build a desk setup that actually feels good to use.</h1>
+        <div className="hero-eyebrow">
+          <span>DeskHaus edit</span>
+          <strong>2026 workspace essentials</strong>
+        </div>
+
+        <h1>Build a workspace that feels finished from day one.</h1>
         <p className="hero-text">
-          Minimal desks, lighting, and accessories designed for clean,
-          focused workspaces.
+          Calm desks, seating, lighting, and desk tools selected to work
+          together without making your room feel staged.
         </p>
 
         <div className="hero-buttons">
           <Link to="/products" className="primary-button">
-            Shop collection
+            Shop the edit
           </Link>
           <a href="#setup-bundle" className="secondary-button">
-            Explore setups
+            View bundle
           </a>
+        </div>
+
+        <div className="hero-stats" aria-label="DeskHaus store highlights">
+          {heroStats.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
         </div>
       </div>
 
@@ -67,8 +82,11 @@ function Hero() {
         />
 
         <div className="product-preview">
-          <span>{currentProduct.name}</span>
-          <strong>${currentProduct.price}</strong>
+          <div>
+            <span>{currentProduct.category}</span>
+            <strong>{currentProduct.name}</strong>
+          </div>
+          <b>${currentProduct.price}</b>
         </div>
 
         <div className="hero-dots" aria-label="Featured setup selector">

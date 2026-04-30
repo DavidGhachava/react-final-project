@@ -2,47 +2,60 @@ import { Link } from 'react-router-dom'
 
 import Hero from '../components/Hero'
 import ProductGrid from '../components/ProductGrid'
-import chair from '../assets/chair.webp'
-import desk from '../assets/desk.webp'
-import lamp from '../assets/lamp.webp'
 import setup from '../assets/setup.webp'
-import shelf from '../assets/shelf.webp'
-import woodMaterial from '../assets/wood-material.webp'
 import workspaceDetail from '../assets/workspace-detail.webp'
 import { getProductBySlug } from '../data/products'
 
-const categories = [
+const setupPaths = [
   {
-    title: 'Desks',
-    text: 'Work surfaces with warm wood, clean lines, and room to breathe.',
-    image: desk,
+    label: 'Focus setup',
+    title: 'Start with the surface',
+    text: 'A warm desk and shelf base for quiet daily work.',
     path: '/products?category=Desks',
   },
   {
-    title: 'Chairs',
-    text: 'Supportive seating for long workdays without the office look.',
-    image: chair,
+    label: 'Long sessions',
+    title: 'Add support without office energy',
+    text: 'Seating that feels soft at home and steady through the day.',
     path: '/products?category=Chairs',
   },
   {
-    title: 'Lighting',
-    text: 'Soft task lighting that makes late sessions feel calmer.',
-    image: lamp,
+    label: 'Evening desk',
+    title: 'Tune the room with warm light',
+    text: 'Compact lighting for slower starts and late finishes.',
     path: '/products?category=Lighting',
   },
   {
-    title: 'Accessories',
-    text: 'Small upgrades that keep your workspace clear and intentional.',
-    image: shelf,
-    path: '/products?category=Accessories',
+    label: 'Full refresh',
+    title: 'Bring the whole setup together',
+    text: 'A complete bundle for a room that needs one clean decision.',
+    path: '/products?category=Setup',
   },
 ]
 
-const setups = [
-  'Minimal focus setup',
-  'Warm evening setup',
-  'Small apartment setup',
-  'Creator desk setup',
+const bundleItems = [
+  'Oak Work Desk',
+  'Ergo Chair',
+  'Oak Desk Shelf',
+  'Desk Lamp',
+]
+
+const trustItems = [
+  {
+    index: '01',
+    title: 'Calm by default',
+    text: 'Quiet shapes, warm materials, and no visual noise fighting for attention.',
+  },
+  {
+    index: '02',
+    title: 'Built around routines',
+    text: 'Work surface, seating, light, and storage chosen as one usable system.',
+  },
+  {
+    index: '03',
+    title: 'Useful before decorative',
+    text: 'Every piece earns its place through comfort, order, or better focus.',
+  },
 ]
 
 const setupBundle = getProductBySlug('full-desk-setup')
@@ -51,51 +64,35 @@ function Home({ onAddToCart }) {
   return (
     <>
       <Hero />
-      <section className="home-section category-section">
-        <div className="section-header home-section-header">
-          <p>Shop by category</p>
-          <h2>Start with the piece your desk is missing.</h2>
+      <section className="home-section setup-path-section">
+        <div className="home-panel-heading">
+          <div>
+            <p className="section-kicker">What are you building?</p>
+            <h2>Choose a starting point, then refine the setup.</h2>
+          </div>
+          <Link to="/products" className="home-pill-link">
+            View all products
+          </Link>
         </div>
 
-        <div className="category-grid">
-          {categories.map((category) => (
-            <Link to={category.path} className="category-card" key={category.title}>
-              <img src={category.image} alt={category.title} />
-              <div>
-                <span>{category.title}</span>
-                <p>{category.text}</p>
-              </div>
+        <div className="setup-path-grid">
+          {setupPaths.map((path) => (
+            <Link to={path.path} className="setup-path-card" key={path.label}>
+              <span>{path.label}</span>
+              <h3>{path.title}</h3>
+              <p>{path.text}</p>
             </Link>
           ))}
         </div>
       </section>
 
-      <ProductGrid onAddToCart={onAddToCart} />
-
-      <section className="home-section lifestyle-section">
-        <div className="lifestyle-image">
-          <img src={workspaceDetail} alt="Warm desk detail with workspace materials" />
-        </div>
-
-        <div className="lifestyle-content">
-          <p className="section-kicker">Designed to feel settled</p>
-          <h2>Everything on your desk should earn its place.</h2>
-          <p>
-            We keep the shapes simple, the materials tactile, and the palette
-            quiet so your workspace feels ready before the work begins.
-          </p>
-
-          <div className="setup-tags">
-            {setups.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className="home-product-shelf">
+        <ProductGrid onAddToCart={onAddToCart} />
+      </div>
 
       <section className="home-section setup-bundle" id="setup-bundle">
         <div className="setup-bundle-content">
-          <p className="section-kicker">Featured setup</p>
+          <p className="section-kicker">Featured bundle</p>
           <h2>One calm desk, built from the essentials.</h2>
           <p>
             Pair the oak desk, shelf, ergonomic chair, and soft lamp for a
@@ -103,10 +100,9 @@ function Home({ onAddToCart }) {
           </p>
 
           <div className="bundle-list">
-            <span>Oak Work Desk</span>
-            <span>Ergo Chair</span>
-            <span>Oak Desk Shelf</span>
-            <span>Desk Lamp</span>
+            {bundleItems.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
           </div>
 
           <div className="bundle-actions">
@@ -123,36 +119,51 @@ function Home({ onAddToCart }) {
 
         <div className="setup-bundle-image">
           <img src={setup} alt="Complete DeskHaus workspace setup" />
+          <div className="bundle-image-card">
+            <span>Bundle value</span>
+            <strong>4-piece setup</strong>
+          </div>
+        </div>
+      </section>
+
+      <section className="home-section material-story">
+        <div className="material-story-image">
+          <img src={workspaceDetail} alt="Warm desk detail with workspace materials" />
+        </div>
+
+        <div className="material-story-content">
+          <p className="section-kicker">Design language</p>
+          <h2>Everything on your desk should earn its place.</h2>
+          <p>
+            We keep the shapes simple, the materials tactile, and the palette
+            quiet so the room feels ready before the work begins.
+          </p>
+
+          <div className="material-note">
+            <span>Oak finish</span>
+            <strong>Warm, matte, easy to pair.</strong>
+          </div>
         </div>
       </section>
 
       <section className="home-section trust-section">
-        <div className="trust-intro">
-          <p className="section-kicker">Why DeskHaus</p>
-          <h2>Premium without making your desk feel precious.</h2>
+        <div className="home-panel-heading">
+          <div>
+            <p className="section-kicker">Why DeskHaus</p>
+            <h2>Premium without making your desk feel precious.</h2>
+          </div>
         </div>
 
         <div className="trust-grid">
-          <article>
-            <span>01</span>
-            <h3>Solid materials</h3>
-            <p>Warm wood, powder-coated details, and durable surfaces for everyday use.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Calm design</h3>
-            <p>Neutral pieces that fit together without making your room feel staged.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Built for daily work</h3>
-            <p>Comfort, storage, and lighting chosen for real routines, not showroom corners.</p>
-          </article>
+          {trustItems.map((item) => (
+            <article key={item.index}>
+              <span>{item.index}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
         </div>
 
-        <div className="material-strip">
-          <img src={woodMaterial} alt="Close view of oak workspace material" />
-        </div>
       </section>
     </>
   )
