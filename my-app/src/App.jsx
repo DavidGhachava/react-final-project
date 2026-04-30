@@ -23,8 +23,11 @@ function App() {
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
   }, [cartItems])
 
-  function handleAddToCart(product) {
-    setCartItems((currentItems) => [...currentItems, product])
+  function handleAddToCart(product, quantity = 1) {
+    const itemCount = Math.max(1, Number(quantity) || 1)
+    const itemsToAdd = Array.from({ length: itemCount }, () => product)
+
+    setCartItems((currentItems) => [...currentItems, ...itemsToAdd])
   }
 
   function handleIncreaseQuantity(productName) {

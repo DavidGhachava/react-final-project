@@ -45,7 +45,7 @@ function Products({ onAddToCart }) {
         <div className="catalog-summary">
           <span>{products.length} essentials</span>
           <span>Free layout pairings</span>
-          <span>Worldwide delivery within 14 days</span>
+          <span>Estimated delivery shown at checkout</span>
         </div>
       </div>
 
@@ -97,7 +97,7 @@ function Products({ onAddToCart }) {
         <div className={`product-grid catalog-grid ${sortedProducts.length < 3 ? 'compact' : ''}`}>
           {sortedProducts.map((product) => (
             <ProductCard
-              key={product.name}
+              key={product.slug}
               image={product.image}
               name={product.name}
               category={product.category}

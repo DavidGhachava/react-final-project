@@ -12,7 +12,7 @@ function ProductGrid({ onAddToCart }) {
       <div className="product-grid">
         {featuredProducts.map((product) => (
           <ProductCard
-            key={product.name}
+            key={product.slug}
             image={product.image}
             name={product.name}
             category={product.category}

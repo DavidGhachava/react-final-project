@@ -148,7 +148,7 @@ function Cart({
 
             <div className="summary-row">
               <span>Shipping</span>
-              <strong>Free</strong>
+              <strong>Calculated at checkout</strong>
             </div>
 
             <div className="summary-note">

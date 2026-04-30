@@ -3,13 +3,13 @@ import { useState } from 'react'
 
 const shippingOptions = {
   standard: {
-    label: 'Worldwide delivery',
-    detail: 'Arrives within 14 days',
+    label: 'Standard delivery',
+    detail: 'Estimated 7-14 business days after dispatch',
     price: 0,
   },
   express: {
     label: 'Priority delivery',
-    detail: 'Arrives in 5-7 days',
+    detail: 'Estimated 4-8 business days after dispatch',
     price: 29,
   },
 }
