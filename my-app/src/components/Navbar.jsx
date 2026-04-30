@@ -6,10 +6,20 @@ function Navbar({ cartCount }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const searchRef = useRef(null)
   const navigate = useNavigate()
   const location = useLocation()
+  const cartLabel = cartCount > 99 ? '99+' : cartCount
+
+  const navItems = [
+    { label: 'Workspaces', category: 'Desks' },
+    { label: 'Seating', category: 'Chairs' },
+    { label: 'Lighting', category: 'Lighting' },
+    { label: 'Desk tools', category: 'Accessories' },
+    { label: 'Bundles', category: 'Setup' },
+  ]
 
   const normalizedSearch = searchTerm.toLowerCase().trim()
 
@@ -83,31 +93,56 @@ function Navbar({ cartCount }) {
   function handleSearchClick(product) {
     setIsSearchOpen(false)
     setSearchTerm('')
+    setIsMenuOpen(false)
     navigate(`/products/${product.slug}`)
+  }
+
+  function closeMobileMenu() {
+    setIsMenuOpen(false)
   }
 
   return (
     <header className={isScrolled ? 'navbar scrolled' : 'navbar'}>
       <div className="logo">
-        <Link to="/">DeskHaus</Link>
+        <Link to="/" aria-label="DeskHaus home">
+          <span className="logo-mark" aria-hidden="true">D</span>
+          <span>DeskHaus</span>
+        </Link>
       </div>
 
-      <nav className="nav-links">
-        <Link className={getCategoryLinkClass('Desks')} to="/products?category=Desks">
-          Desks
+      <div className="mobile-header-actions">
+        <Link to="/cart" className="mobile-bag-button" onClick={closeMobileMenu}>
+          <span>Bag</span>
+          <strong>{cartLabel}</strong>
         </Link>
-        <Link className={getCategoryLinkClass('Chairs')} to="/products?category=Chairs">
-          Chairs
-        </Link>
-        <Link className={getCategoryLinkClass('Lighting')} to="/products?category=Lighting">
-          Lighting
-        </Link>
-        <Link className={getCategoryLinkClass('Accessories')} to="/products?category=Accessories">
-          Accessories
-        </Link>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/cart" className="mobile-cart-link">
-          Cart ({cartCount})
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-expanded={isMenuOpen}
+          aria-controls="primary-navigation"
+          onClick={() => setIsMenuOpen((currentValue) => !currentValue)}
+        >
+          {isMenuOpen ? 'Close' : 'Menu'}
+        </button>
+      </div>
+
+      <nav
+        className={isMenuOpen ? 'nav-links open' : 'nav-links'}
+        id="primary-navigation"
+      >
+        {navItems.map((item) => (
+          <Link
+            key={item.category}
+            className={getCategoryLinkClass(item.category)}
+            to={`/products?category=${item.category}`}
+            onClick={closeMobileMenu}
+          >
+            {item.label}
+          </Link>
+        ))}
+        <NavLink to="/about" onClick={closeMobileMenu}>Story</NavLink>
+        <NavLink to="/cart" className="mobile-cart-link" onClick={closeMobileMenu}>
+          Bag ({cartLabel})
         </NavLink>
       </nav>
 
@@ -117,7 +152,7 @@ function Navbar({ cartCount }) {
           <input
             className="search-input"
             type="text"
-            placeholder="Search wood, lamps..."
+            placeholder="Search desks, lamps, setup pieces..."
             value={searchTerm}
             onFocus={() => setIsSearchOpen(true)}
             onChange={(event) => {
@@ -131,7 +166,7 @@ function Navbar({ cartCount }) {
               {searchResults.length > 0 ? (
                 searchResults.map((product) => (
                   <button
-                    key={product.name}
+                    key={product.slug}
                     className="search-result"
                     onClick={() => handleSearchClick(product)}
                   >
@@ -147,13 +182,20 @@ function Navbar({ cartCount }) {
         </div>
 
         <Link to="/cart" className="cart-button">
-          <span>Cart</span>
-          <strong>{cartCount}</strong>
+          <span>Bag</span>
+          <strong>{cartLabel}</strong>
         </Link>
 
-        <NavLink to="/products" end className="nav-button">
+        <Link
+          to="/products"
+          className={
+            location.pathname === '/products' && !selectedCategory
+              ? 'nav-button active'
+              : 'nav-button'
+          }
+        >
           Shop
-        </NavLink>
+        </Link>
       </div>
     </header>
   )
