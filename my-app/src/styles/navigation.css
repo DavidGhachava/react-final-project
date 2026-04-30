@@ -187,7 +187,7 @@
 
 @media (max-width: 1100px) {
   .navbar + * {
-    margin-top: 150px;
+    margin-top: 142px;
   }
 
   .navbar.tablet-collapsed + * {
@@ -195,13 +195,14 @@
   }
 
   .navbar {
-    padding: 18px 28px 16px;
+    padding: 16px 28px 14px;
     grid-template-columns: 1fr auto;
+    gap: 14px 20px;
   }
 
   .navbar.tablet-collapsed {
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
 
   .tablet-collapse-toggle {
@@ -265,35 +266,36 @@
 
 @media (min-width: 601px) and (max-width: 760px) {
   .navbar + * {
-    margin-top: 196px;
+    margin-top: 142px;
   }
 
   .navbar.tablet-collapsed + * {
-    margin-top: 84px;
+    margin-top: 82px;
   }
 
   .navbar {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 18px 34px 18px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px 18px;
+    padding: 14px 34px;
   }
 
   .navbar.tablet-collapsed {
-    grid-template-columns: 1fr auto;
-    gap: 18px;
-    padding: 16px 34px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px 18px;
+    padding: 13px 34px;
   }
 
   .nav-actions {
-    grid-column: 1;
-    grid-row: 2;
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
-    width: 100%;
+    width: auto;
     justify-content: flex-end;
   }
 
   .nav-links {
-    grid-row: 3;
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 
   .navbar.tablet-collapsed .nav-actions {
