@@ -40,21 +40,24 @@ const bundleItems = [
   'Desk Lamp',
 ]
 
-const trustItems = [
+const standards = [
   {
     index: '01',
-    title: 'Calm by default',
-    text: 'Quiet shapes, warm materials, and no visual noise fighting for attention.',
+    title: 'Quiet from across the room',
+    text: 'No loud silhouettes, glossy finishes, or pieces that make the desk feel staged.',
+    proof: 'Low visual noise',
   },
   {
     index: '02',
-    title: 'Built around routines',
-    text: 'Work surface, seating, light, and storage chosen as one usable system.',
+    title: 'Useful at arm’s length',
+    text: 'Surfaces, seating, light, and storage are chosen by reach, routine, and daily comfort.',
+    proof: 'Built for use',
   },
   {
     index: '03',
-    title: 'Useful before decorative',
-    text: 'Every piece earns its place through comfort, order, or better focus.',
+    title: 'Easy to add, easy to live with',
+    text: 'Every item can work alone, but the edit is designed to feel better as a complete setup.',
+    proof: 'Setup-ready',
   },
 ]
 
@@ -147,21 +150,34 @@ function Home({ onAddToCart }) {
       </section>
 
       <section className="home-section trust-section">
-        <div className="home-panel-heading">
-          <div>
-            <p className="section-kicker">Why DeskHaus</p>
+        <div className="standards-board">
+          <div className="standards-lead">
+            <p className="section-kicker">DeskHaus standard</p>
             <h2>Premium without making your desk feel precious.</h2>
+            <Link to="/about" className="standards-link">
+              Read the story
+            </Link>
           </div>
-        </div>
 
-        <div className="trust-grid">
-          {trustItems.map((item) => (
-            <article key={item.index}>
-              <span>{item.index}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
+          <div className="standards-list" aria-label="DeskHaus product standards">
+            {standards.map((item) => (
+              <article key={item.index} className="standard-row">
+                <span>{item.index}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                <strong>{item.proof}</strong>
+              </article>
+            ))}
+          </div>
+
+          <div className="standards-note" aria-label="DeskHaus edit note">
+            <span>Current edit</span>
+            <strong>5 pieces</strong>
+            <p>
+              A short catalog on purpose: desk, chair, light, shelf, and one
+              complete bundle.
+            </p>
+          </div>
         </div>
 
       </section>
