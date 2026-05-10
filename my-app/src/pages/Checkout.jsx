@@ -405,7 +405,12 @@ function Checkout({ cartItems, onClearCart }) {
             {groupedItems.map((item) => (
               <div className="summary-product" key={item.name}>
                 <div className="summary-product-image">
-                  <img src={item.image} alt={item.name} />
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <span>{item.quantity}</span>
                 </div>
                 <div>

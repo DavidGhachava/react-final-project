@@ -121,7 +121,12 @@ function Home({ onAddToCart }) {
         </div>
 
         <div className="setup-bundle-image">
-          <img src={setup} alt="Complete DeskHaus workspace setup" />
+          <img
+            src={setup}
+            alt="Complete DeskHaus workspace setup"
+            loading="lazy"
+            decoding="async"
+          />
           <div className="bundle-image-card">
             <span>Bundle value</span>
             <strong>4-piece setup</strong>
@@ -131,7 +136,12 @@ function Home({ onAddToCart }) {
 
       <section className="home-section material-story">
         <div className="material-story-image">
-          <img src={workspaceDetail} alt="Warm desk detail with workspace materials" />
+          <img
+            src={workspaceDetail}
+            alt="Warm desk detail with workspace materials"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         <div className="material-story-content">

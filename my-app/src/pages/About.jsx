@@ -49,7 +49,12 @@ function About() {
       </section>
 
       <section className="story-image-band">
-        <img src={setup} alt="Complete DeskHaus workspace setup" />
+        <img
+          src={setup}
+          alt="Complete DeskHaus workspace setup"
+          loading="lazy"
+          decoding="async"
+        />
         <div className="story-image-caption">
           <span>Setup thinking</span>
           <strong>One room, one visual language.</strong>
@@ -90,13 +95,23 @@ function About() {
         </div>
 
         <div className="story-split-image">
-          <img src={woodMaterial} alt="Close view of oak workspace material" />
+          <img
+            src={woodMaterial}
+            alt="Close view of oak workspace material"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </section>
 
       <section className="story-split reverse">
         <div className="story-split-image">
-          <img src={deskCraft} alt="Desk product craftsmanship" />
+          <img
+            src={deskCraft}
+            alt="Desk product craftsmanship"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         <div className="story-split-copy">
@@ -111,7 +126,12 @@ function About() {
       </section>
 
       <section className="story-closing">
-        <img src={workspaceDetail} alt="Warm desk detail with lamp and plant" />
+        <img
+          src={workspaceDetail}
+          alt="Warm desk detail with lamp and plant"
+          loading="lazy"
+          decoding="async"
+        />
         <div>
           <p className="section-kicker">The goal</p>
           <h2>A desk that feels ready, not precious.</h2>

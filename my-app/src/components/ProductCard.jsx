@@ -8,7 +8,13 @@ function ProductCard({ product, image, name, category, price, onAddToCart }) {
     <article className="product-card">
       <Link to={`/products/${product.slug}`} className="product-card-link">
         <div className="product-image-wrap">
-          <img src={image} alt={name} className="product-image" />
+          <img
+            src={image}
+            alt={name}
+            className="product-image"
+            loading="lazy"
+            decoding="async"
+          />
           <span className="product-card-badge">{category}</span>
         </div>
 

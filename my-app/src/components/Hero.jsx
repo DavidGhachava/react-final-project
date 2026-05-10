@@ -79,6 +79,9 @@ function Hero() {
           className="hero-image"
           src={currentProduct.image}
           alt={currentProduct.name}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
 
         <div className="product-preview">

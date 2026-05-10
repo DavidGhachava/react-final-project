@@ -50,7 +50,13 @@ function ProductDetail({ onAddToCart }) {
       <section className="product-detail">
         <div className="detail-gallery" aria-label={`${product.name} product images`}>
           <div className="detail-image-wrap">
-            <img src={gallery[activeImageIndex]} alt={product.name} />
+            <img
+              src={gallery[activeImageIndex]}
+              alt={product.name}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
           </div>
 
           <div className="detail-thumbnails">
@@ -66,7 +72,7 @@ function ProductDetail({ onAddToCart }) {
                 aria-label={`Show ${product.name} image ${index + 1}`}
                 onClick={() => setActiveImageIndex(index)}
               >
-                <img src={image} alt="" />
+                <img src={image} alt="" loading="lazy" decoding="async" />
               </button>
             ))}
           </div>

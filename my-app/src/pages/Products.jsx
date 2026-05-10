@@ -89,7 +89,12 @@ function Products({ onAddToCart }) {
 
         {featuredBundle && (
           <article className="catalog-feature">
-            <img src={featuredBundle.image} alt={featuredBundle.name} />
+            <img
+              src={featuredBundle.image}
+              alt={featuredBundle.name}
+              loading="lazy"
+              decoding="async"
+            />
             <div className="catalog-feature-copy">
               <span>Featured bundle</span>
               <h2>{featuredBundle.name}</h2>

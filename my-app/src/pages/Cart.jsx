@@ -78,7 +78,12 @@ function Cart({
 
                 return (
                   <article className="cart-item" key={item.name}>
-                    <img src={item.image} alt={item.name} />
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
 
                     <div className="cart-item-info">
                       <p>{item.category}</p>
