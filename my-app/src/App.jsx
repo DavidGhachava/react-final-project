@@ -11,6 +11,7 @@ import Contact from './pages/Contact'
 import ProductDetail from './pages/ProductDetail'
 import Support from './pages/Support'
 import Footer from './components/Footer'
+import LaunchLoader from './components/LaunchLoader'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
 
   return (
     <>
+      <LaunchLoader />
       <ScrollToTop />
       <Navbar cartCount={cartItems.length} />
 
